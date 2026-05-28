@@ -5,6 +5,8 @@ const ContactUs = () => {
 
   const [toast, setToast] = useState(false);
 
+  const [errors, setErrors] = useState({});
+
   const [formData, setFormData] = useState({
     name: "",
     age: "",
@@ -31,58 +33,89 @@ const ContactUs = () => {
     });
   };
 
-  // SUBMIT FORM
-  const handleSubmit = async (e) => {
+  // VALIDATION
+  const validate = () => {
+
+    let newErrors = {};
+
+    if (formData.name.trim().length < 3) {
+      newErrors.name = "Name must be at least 3 characters";
+    }
+
+    if (formData.age < 15 || formData.age > 60) {
+      newErrors.age = "Enter valid age";
+    }
+
+    if (!/^[0-9]{10}$/.test(formData.phone)) {
+      newErrors.phone = "Phone must be 10 digits";
+    }
+
+    if (formData.goal.trim().length < 3) {
+      newErrors.goal = "Enter valid goal";
+    }
+
+    if (!formData.gender) {
+      newErrors.gender = "Select gender";
+    }
+
+    if (!formData.plan) {
+      newErrors.plan = "Select plan";
+    }
+
+    setErrors(newErrors);
+
+    return Object.keys(newErrors).length === 0;
+  };
+
+  // SUBMIT
+  const handleSubmit = (e) => {
+
     e.preventDefault();
 
-    try {
+    if (!validate()) return;
 
-      // GOOGLE FORM URL
-      const formURL =
-        "https://docs.google.com/forms/d/e/YOUR_FORM_ID/formResponse";
+    // YOUR WHATSAPP NUMBER
+    const number = "919699237168";
 
-      const formBody = new FormData();
+    // MESSAGE
+    const message = `
+NEW GYM LEAD
 
-      // GOOGLE FORM FIELD IDS
-      formBody.append("entry.111111111", formData.name);
-      formBody.append("entry.222222222", formData.age);
-      formBody.append("entry.333333333", formData.gender);
-      formBody.append("entry.444444444", formData.phone);
-      formBody.append("entry.555555555", formData.goal);
-      formBody.append("entry.666666666", formData.plan);
+Name: ${formData.name}
+Age: ${formData.age}
+Gender: ${formData.gender}
+Phone: ${formData.phone}
+Goal: ${formData.goal}
+Plan: ${formData.plan}
+`;
 
-      await fetch(formURL, {
-        method: "POST",
-        mode: "no-cors",
-        body: formBody,
-      });
+    // ENCODE MESSAGE
+    const whatsappURL = `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
 
-      // SUCCESS POPUP
-      setToast(true);
+    // OPEN WHATSAPP
+    window.open(whatsappURL, "_blank");
 
-      // RESET FORM
-      setFormData({
-        name: "",
-        age: "",
-        gender: "",
-        phone: "",
-        goal: "",
-        plan: "",
-      });
+    // TOAST
+    setToast(true);
 
-      setTimeout(() => {
-        setToast(false);
-      }, 3000);
+    // RESET FORM
+    setFormData({
+      name: "",
+      age: "",
+      gender: "",
+      phone: "",
+      goal: "",
+      plan: "",
+    });
 
-    } catch (error) {
-      console.log(error);
-    }
+    setTimeout(() => {
+      setToast(false);
+    }, 3000);
   };
 
   return (
     <div className="contact-container" id="contact">
 
-      {/* ORANGE BLOBS */}
       <div className="blob blob1"></div>
       <div className="blob blob2"></div>
 
@@ -95,64 +128,76 @@ const ContactUs = () => {
         onSubmit={handleSubmit}
       >
 
-        <input
-          type="text"
-          name="name"
-          placeholder="Your Name"
-          value={formData.name}
-          onChange={handleChange}
-          required
-        />
+        <div>
+          <input
+            type="text"
+            name="name"
+            placeholder="Your Name"
+            value={formData.name}
+            onChange={handleChange}
+          />
+          {errors.name && <p className="error">{errors.name}</p>}
+        </div>
 
-        <input
-          type="number"
-          name="age"
-          placeholder="Your Age"
-          value={formData.age}
-          onChange={handleChange}
-          required
-        />
+        <div>
+          <input
+            type="number"
+            name="age"
+            placeholder="Your Age"
+            value={formData.age}
+            onChange={handleChange}
+          />
+          {errors.age && <p className="error">{errors.age}</p>}
+        </div>
 
-        <select
-          name="gender"
-          value={formData.gender}
-          onChange={handleChange}
-          required
-        >
-          <option value="">Select Gender</option>
-          <option>Male</option>
-          <option>Female</option>
-        </select>
+        <div>
+          <select
+            name="gender"
+            value={formData.gender}
+            onChange={handleChange}
+          >
+            <option value="">Select Gender</option>
+            <option>Male</option>
+            <option>Female</option>
+          </select>
+          {errors.gender && <p className="error">{errors.gender}</p>}
+        </div>
 
-        <input
-          type="tel"
-          name="phone"
-          placeholder="Phone Number"
-          value={formData.phone}
-          onChange={handleChange}
-          required
-        />
+        <div>
+          <input
+            type="tel"
+            name="phone"
+            placeholder="Phone Number"
+            value={formData.phone}
+            onChange={handleChange}
+          />
+          {errors.phone && <p className="error">{errors.phone}</p>}
+        </div>
 
-        <input
-          type="text"
-          name="goal"
-          placeholder="Fitness Goal"
-          value={formData.goal}
-          onChange={handleChange}
-          required
-        />
+        <div>
+          <input
+            type="text"
+            name="goal"
+            placeholder="Fitness Goal"
+            value={formData.goal}
+            onChange={handleChange}
+          />
+          {errors.goal && <p className="error">{errors.goal}</p>}
+        </div>
 
-        <select
-          name="plan"
-          value={formData.plan}
-          onChange={handleChange}
-          required
-        >
-          <option value="">Select Plan</option>
-          <option>Monthly</option>
-          <option>Quarterly</option>
-          <option>Yearly</option>
-        </select>
+        <div>
+          <select
+            name="plan"
+            value={formData.plan}
+            onChange={handleChange}
+          >
+            <option value="">Select Plan</option>
+            <option>Monthly</option>
+            <option>Quarterly</option>
+            <option>Yearly</option>
+          </select>
+          {errors.plan && <p className="error">{errors.plan}</p>}
+        </div>
 
         <button type="submit">
           Submit
@@ -160,10 +205,9 @@ const ContactUs = () => {
 
       </form>
 
-      {/* SUCCESS TOAST */}
       {toast && (
         <div className="toast">
-          Submitted Successfully ✅
+          Submitted Successfully
         </div>
       )}
 
