@@ -1,0 +1,76 @@
+
+/* HEADER */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  background: transparent;
+}
+
+/* BRAND TEXT (NEW LOGO STYLE) */
+.brand-name {
+  font-size: 1.8rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: white;
+  cursor: pointer;
+}
+
+.brand-name span {
+  color: orange;
+  text-shadow: 0 0 10px rgba(255, 165, 0, 0.4);
+}
+
+/* MENU */
+.header-menu {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  color: white;
+  align-items: center;
+}
+
+.header-menu li {
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.header-menu li:hover {
+  color: orange;
+}
+
+/* JOIN NOW BUTTON */
+.join-now-btn {
+  background: linear-gradient(135deg, orange, #ff6a00);
+  color: black !important;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.join-now-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(255, 165, 0, 0.4);
+}
+
+/* MOBILE ICON */
+.menu-icon img {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+/* MOBILE MENU */
+@media screen and (max-width: 768px) {
+  .header-menu {
+    flex-direction: column;
+    position: fixed;
+    right: 1rem;
+    top: 4rem;
+    background: var(--appColor);
+    padding: 2rem;
+    border-radius: 10px;
+    z-index: 99;
+  }
+}

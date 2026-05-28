@@ -1,0 +1,188 @@
+/* MAIN */
+.contact-container {
+  position: relative;
+  padding: 5rem 2rem;
+  background: #1b1b1b;
+  color: white;
+  text-align: center;
+  overflow: hidden;
+}
+
+/* TITLE */
+.contact-container h2 {
+  font-size: 2.8rem;
+  margin-bottom: 2rem;
+}
+
+.contact-container h2 span {
+  color: orange;
+}
+
+/* FORM */
+.contact-form {
+  max-width: 520px;
+  margin: auto;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  padding: 2rem;
+  border-radius: 18px;
+
+  background: rgba(255, 255, 255, 0.05);
+
+  border: 1px solid rgba(255, 165, 0, 0.2);
+
+  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+}
+
+/* INPUTS */
+.contact-form input,
+.contact-form select {
+  padding: 12px;
+  border-radius: 10px;
+
+  border: 1px solid #333;
+
+  background: #222;
+  color: white;
+
+  outline: none;
+
+  transition: 0.3s;
+}
+
+.contact-form input:focus,
+.contact-form select:focus {
+  border: 1px solid orange;
+
+  box-shadow: 0 0 10px rgba(255,165,0,0.3);
+}
+
+/* BUTTON */
+.contact-form button {
+  padding: 12px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: linear-gradient(
+    135deg,
+    orange,
+    #ff6a00
+  );
+
+  color: black;
+  font-weight: bold;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.contact-form button:hover {
+  transform: scale(1.03);
+}
+
+/* TOAST */
+.toast {
+  position: fixed;
+
+  bottom: 20px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  background: orange;
+  color: black;
+
+  padding: 12px 20px;
+
+  border-radius: 10px;
+
+  font-weight: bold;
+
+  z-index: 999;
+}
+
+/* BLOBS */
+.blob {
+  position: absolute;
+
+  width: 220px;
+  height: 220px;
+
+  border-radius: 50%;
+
+  filter: blur(80px);
+
+  opacity: 0.25;
+
+  animation: float 6s infinite ease-in-out;
+}
+
+.blob1 {
+  top: -60px;
+  left: -60px;
+
+  background: orange;
+}
+
+.blob2 {
+  bottom: -60px;
+  right: -60px;
+
+  background: #ff6a00;
+}
+
+/* FLOAT ANIMATION */
+@keyframes float {
+
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(30px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+/* SLIDE */
+.slide-in {
+  animation: slideUp 0.8s ease;
+}
+
+@keyframes slideUp {
+
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+
+  .contact-container {
+    padding: 4rem 1rem;
+  }
+
+  .contact-container h2 {
+    font-size: 2rem;
+  }
+
+  .contact-form {
+    padding: 1.5rem;
+  }
+
+}
