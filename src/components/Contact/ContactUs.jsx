@@ -74,7 +74,7 @@ const ContactUs = () => {
 
     if (!validate()) return;
 
-    // YOUR WHATSAPP NUMBER
+    // WHATSAPP NUMBER
     const number = "919699237168";
 
     // MESSAGE
@@ -89,11 +89,11 @@ Goal: ${formData.goal}
 Plan: ${formData.plan}
 `;
 
-    // ENCODE MESSAGE
+    // WHATSAPP URL
     const whatsappURL = `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
 
-    // OPEN WHATSAPP
-    window.open(whatsappURL, "_blank");
+    // REDIRECT TO WHATSAPP
+    window.location.href = whatsappURL;
 
     // TOAST
     setToast(true);
