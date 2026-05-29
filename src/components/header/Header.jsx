@@ -1,24 +1,22 @@
-import React, { useState } from 'react';
-import Bars from '../../assets/bars.png';
-import { Link } from 'react-scroll';
-import './Header.css';
+import React, { useState } from 'react'
+import Bars from '../../assets/bars.png'
+import Logo2 from '../../assets/logo2.png'
+import { Link } from 'react-scroll'
+import './Header.css'
 
 const Header = () => {
 
-  const mobile = window.innerWidth <= 768 ? true : false;
-
-  const [menuOpened, setMenuOpened] = useState(false);
+  const mobile = window.innerWidth <= 768
+  const [menuOpened, setMenuOpened] = useState(false)
 
   return (
-
     <div className="header">
 
-      {/* BRAND NAME */}
-      <div className="brand-name">
-        CLUB <span>ZENO</span>
+      <div className="logo-container">
+        <img src={Logo2} alt="logo" className="logo-img" />
       </div>
 
-      {menuOpened === false && mobile === true ? (
+      {mobile && !menuOpened ? (
 
         <div
           className="menu-icon"
@@ -29,82 +27,63 @@ const Header = () => {
 
       ) : (
 
-        <ul className="header-menu">
+        <>
+          <ul className="header-menu">
 
-          <li>
-            <Link
-              to='home'
-              smooth={true}
-              duration={500}
-              onClick={() => setMenuOpened(false)}
-            >
-              Home
-            </Link>
-          </li>
+            <li>
+              <Link to='home' smooth duration={500} onClick={() => mobile && setMenuOpened(false)}>
+                Home
+              </Link>
+            </li>
 
-          {/* ✅ FIXED SERVICES */}
-          <li>
-            <Link
-              to='services'
-              smooth={true}
-              duration={500}
-              onClick={() => setMenuOpened(false)}
-            >
-              Services
-            </Link>
-          </li>
+            <li>
+              <Link to='services' smooth duration={500} onClick={() => mobile && setMenuOpened(false)}>
+                Services
+              </Link>
+            </li>
 
-          <li>
-            <Link
-              to='reasons'
-              smooth={true}
-              duration={500}
-              onClick={() => setMenuOpened(false)}
-            >
-              Why us
-            </Link>
-          </li>
+            <li>
+              <Link to='reasons' smooth duration={500} onClick={() => mobile && setMenuOpened(false)}>
+                Why Us
+              </Link>
+            </li>
 
-          <li>
-            <Link
-              to='plans'
-              smooth={true}
-              duration={500}
-              onClick={() => setMenuOpened(false)}
-            >
-              Plans
-            </Link>
-          </li>
+            <li>
+              <Link to='plans' smooth duration={500} onClick={() => mobile && setMenuOpened(false)}>
+                Plans
+              </Link>
+            </li>
 
-          <li>
-            <Link
-              to='testimonials'
-              smooth={true}
-              duration={500}
-              onClick={() => setMenuOpened(false)}
-            >
-              Testimonials
-            </Link>
-          </li>
+            <li>
+              <Link to='testimonials' smooth duration={500} onClick={() => mobile && setMenuOpened(false)}>
+                Reviews
+              </Link>
+            </li>
 
-          {/* JOIN NOW */}
-          <li>
-            <Link
-              to='contact'
-              smooth={true}
-              duration={500}
-              onClick={() => setMenuOpened(false)}
-              className="join-now-btn"
-            >
-              Join Now
-            </Link>
-          </li>
+            <li>
+              <Link
+                to='join-us'
+                smooth
+                duration={500}
+                className="join-now-btn"
+                onClick={() => mobile && setMenuOpened(false)}
+              >
+                Join Now
+              </Link>
+            </li>
 
-        </ul>
+          </ul>
+
+          {mobile && (
+            <div className="close-icon" onClick={() => setMenuOpened(false)}>
+              ✕
+            </div>
+          )}
+        </>
       )}
 
     </div>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

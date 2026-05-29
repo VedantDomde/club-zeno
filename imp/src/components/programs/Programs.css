@@ -1,0 +1,144 @@
+.Programs {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 0 2rem;
+    margin-top: 4rem;
+}
+
+/* HEADER */
+
+.programs-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    gap: 2rem;
+    font-weight: bold;
+    font-size: 3rem;
+    text-transform: uppercase;
+    font-style: italic;
+    text-align: center;
+}
+
+/* GRID */
+
+.program-categories {
+    display: grid;
+
+    /* AUTO FIT FIX */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+/* CARD */
+
+.category {
+    display: flex;
+    flex-direction: column;
+
+    /* ORANGE + DARK THEME */
+    background: linear-gradient(
+        145deg,
+        #1f1f1f,
+        #2c2c2c,
+        #ff7b00
+    );
+
+    padding: 2rem;
+    gap: 1rem;
+
+    color: white;
+
+    border-radius: 20px;
+
+    transition: 0.4s ease;
+
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+
+    min-height: 320px;
+}
+
+/* HOVER */
+
+.category:hover {
+    transform: translateY(-10px);
+    cursor: pointer;
+
+    background: linear-gradient(
+        145deg,
+        #ff7b00,
+        #ff9500,
+        #1f1f1f
+    );
+}
+
+/* ICON */
+
+.category svg {
+    color: #ff9500;
+    width: 45px;
+    height: 45px;
+}
+
+/* TITLE */
+
+.category > :nth-child(2) {
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-top: 0.5rem;
+}
+
+/* DETAILS */
+
+.category > :nth-child(3) {
+    font-size: 0.95rem;
+    line-height: 28px;
+    color: #e4e4e4;
+}
+
+/* BUTTON */
+
+.join-now {
+    margin-top: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #ff9500;
+
+    padding: 0.9rem 1rem;
+
+    border-radius: 12px;
+
+    font-weight: bold;
+
+    transition: 0.3s;
+}
+
+.join-now:hover {
+    background: white;
+    color: black;
+}
+
+/* RESPONSIVE */
+
+@media screen and (max-width: 768px) {
+
+    .Programs {
+        padding: 0 1rem;
+    }
+
+    .programs-header {
+        flex-direction: column;
+        gap: 0.5rem;
+        font-size: 2rem;
+    }
+
+    .program-categories {
+        grid-template-columns: 1fr;
+    }
+}

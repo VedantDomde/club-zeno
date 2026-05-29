@@ -4,87 +4,68 @@ import {
   Flame,
   Activity,
   HeartPulse,
-  Waves,
-  Move3D,
 } from "lucide-react";
 
 import "./Programs.css";
 
 const servicesData = [
   {
-    icon: <Activity size={40} />,
-    heading: "AI Modes",
+    icon: <Activity size={42} />,
+    heading: "CrossFit Training",
     details:
-      "Advanced AI powered fitness experience with smart workout tracking and performance optimization.",
+      "High intensity training sessions for fat loss and athletic performance.",
   },
-
   {
-    icon: <Dumbbell size={40} />,
-    heading: "Kettlebell",
+    icon: <Dumbbell size={42} />,
+    heading: "Strength Training",
     details:
-      "Build strength, endurance and explosive power with functional kettlebell workouts.",
+      "Build lean muscle mass and explosive strength with expert trainers.",
   },
-
   {
-    icon: <Flame size={40} />,
-    heading: "Crossfit HIIT",
+    icon: <Flame size={42} />,
+    heading: "Fat Loss Program",
     details:
-      "High intensity interval training sessions designed for fat burn and athletic conditioning.",
+      "Custom fat loss workout plans with nutrition guidance.",
   },
-
   {
-    icon: <Move3D size={40} />,
-    heading: "Resistance Training",
+    icon: <HeartPulse size={42} />,
+    heading: "Cardio Sessions",
     details:
-      "Professional resistance workouts focused on muscle growth, strength and body shaping.",
-  },
-
-  {
-    icon: <HeartPulse size={40} />,
-    heading: "Recovery & Sauna",
-    details:
-      "Relax your muscles and recover faster with recovery sessions and sauna therapy.",
-  },
-
-  {
-    icon: <Waves size={40} />,
-    heading: "Slider Pilates",
-    details:
-      "Improve flexibility, posture and core strength with modern slider pilates training.",
-  },
-
-  {
-    icon: <Activity size={40} />,
-    heading: "Compound Movement",
-    details:
-      "Master functional full body movements for better athletic performance and strength.",
+      "Advanced cardio and endurance programs for heart fitness.",
   },
 ];
 
 const Programs = () => {
   return (
     <div className="Programs" id="services">
-      
-      <div className="programs-header">
-        <span className="stroke-text">Explore Our</span>
-        <span>Services</span>
-        <span className="stroke-text">At Club Zeno</span>
+      {/* Background gradient overlay from image style */}
+      <div className="programs-bg-gradient"></div>
+
+      <div className="program-bg-blur blur-left"></div>
+      <div className="program-bg-blur blur-right"></div>
+
+      <div className="programs-title">
+        <span className="mini-program-title">
+          CLUB ZENO SERVICES
+        </span>
+
+        <h2>
+          OUR FITNESS <span className="gradient-text">SERVICES</span>
+        </h2>
+
+        <p>
+          Train smarter with modern fitness solutions at Club Zeno
+        </p>
       </div>
 
-      <div className="program-categories">
-        {servicesData.map((service, index) => (
-          <div className="category" key={index}>
-            
-            {service.icon}
-
-            <span>{service.heading}</span>
-
-            <span>{service.details}</span>
-
-            <div className="join-now">
-              <span>Join Now</span>
+      <div className="program-grid">
+        {servicesData.map((item, index) => (
+          <div className="program-card" key={index}>
+            <div className="program-icon">
+              {item.icon}
             </div>
-
+            <h3>{item.heading}</h3>
+            <p>{item.details}</p>
           </div>
         ))}
       </div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./ContactUs.css";
 
 const ContactUs = () => {
@@ -15,16 +15,6 @@ const ContactUs = () => {
     goal: "",
     plan: "",
   });
-
-  useEffect(() => {
-    const section = document.getElementById("contact");
-
-    if (section) {
-      section.scrollIntoView({
-        behavior: "smooth",
-      });
-    }
-  }, []);
 
   const handleChange = (e) => {
     setFormData({
@@ -50,8 +40,8 @@ const ContactUs = () => {
       newErrors.phone = "Phone must be 10 digits";
     }
 
-    if (formData.goal.trim().length < 3) {
-      newErrors.goal = "Enter valid goal";
+    if (!formData.goal) {
+      newErrors.goal = "Select fitness goal";
     }
 
     if (!formData.gender) {
@@ -74,31 +64,25 @@ const ContactUs = () => {
 
     if (!validate()) return;
 
-    // WHATSAPP NUMBER
     const number = "919699237168";
 
-    // MESSAGE
     const message = `
-NEW GYM LEAD
+🔥 NEW CLUB ZENO LEAD 🔥
 
 Name: ${formData.name}
 Age: ${formData.age}
 Gender: ${formData.gender}
 Phone: ${formData.phone}
-Goal: ${formData.goal}
+Fitness Goal: ${formData.goal}
 Plan: ${formData.plan}
 `;
 
-    // WHATSAPP URL
     const whatsappURL = `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
 
-    // REDIRECT TO WHATSAPP
     window.location.href = whatsappURL;
 
-    // TOAST
     setToast(true);
 
-    // RESET FORM
     setFormData({
       name: "",
       age: "",
@@ -119,10 +103,26 @@ Plan: ${formData.plan}
       <div className="blob blob1"></div>
       <div className="blob blob2"></div>
 
-      <h2>
-        Contact <span>Us</span>
-      </h2>
+      {/* HEADING */}
+      <div className="contact-top">
 
+        <p className="small-heading">
+          PREMIUM FITNESS EXPERIENCE
+        </p>
+
+        <h2>
+          Join <span>CLUB ZENO</span>
+        </h2>
+
+        <p className="gym-info">
+          CLUB ZENO is Nagpur’s premium rooftop fitness destination
+          designed for strength, transformation, fat loss, aesthetics,
+          and functional training.
+        </p>
+
+      </div>
+
+      {/* FORM */}
       <form
         className="contact-form slide-in"
         onSubmit={handleSubmit}
@@ -174,17 +174,29 @@ Plan: ${formData.plan}
           {errors.phone && <p className="error">{errors.phone}</p>}
         </div>
 
+        {/* FITNESS GOALS */}
         <div>
-          <input
-            type="text"
+          <select
             name="goal"
-            placeholder="Fitness Goal"
             value={formData.goal}
             onChange={handleChange}
-          />
+          >
+            <option value="">Select Fitness Goal</option>
+            <option>Weight Loss</option>
+            <option>Muscle Gain</option>
+            <option>Body Transformation</option>
+            <option>Fat Loss</option>
+            <option>Strength Training</option>
+            <option>Cardio Fitness</option>
+            <option>General Fitness</option>
+            <option>Six Pack Abs</option>
+            <option>Powerlifting</option>
+          </select>
+
           {errors.goal && <p className="error">{errors.goal}</p>}
         </div>
 
+        {/* PLAN */}
         <div>
           <select
             name="plan"
@@ -192,22 +204,71 @@ Plan: ${formData.plan}
             onChange={handleChange}
           >
             <option value="">Select Plan</option>
-            <option>Monthly</option>
-            <option>Quarterly</option>
-            <option>Yearly</option>
+            <option>Monthly Plan</option>
+            <option>Quarterly Plan</option>
+            <option>Half-Yearly Plan</option>
+            <option>Yearly Plan</option>
           </select>
+
           {errors.plan && <p className="error">{errors.plan}</p>}
         </div>
 
         <button type="submit">
-          Submit
+          Join Club Zeno
         </button>
 
       </form>
 
+      {/* INFO CARDS */}
+      <div className="contact-cards">
+
+        <div className="info-card">
+          <h3>📍 Address</h3>
+          <p>
+            Corporate Plot No 10, Rooftop K10,
+            Wardha Rd, Jai Prakash Nagar,
+            New Sneh Nagar,
+            Nagpur, Maharashtra 440015
+          </p>
+        </div>
+
+        <div className="info-card">
+          <h3>📞 Phone</h3>
+          <p>9699237168</p>
+        </div>
+
+        <div className="info-card">
+          <h3>📸 Instagram</h3>
+
+          <a
+            href="https://www.instagram.com/clubzeno/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            @clubzeno
+          </a>
+        </div>
+
+      </div>
+
+      {/* MAP */}
+      <div className="map-container">
+
+        <iframe
+          title="Club Zeno Map"
+          src="https://www.google.com/maps?q=CLUB+ZENO+Nagpur&output=embed"
+          width="100%"
+          height="350"
+          style={{ border: 0 }}
+          allowFullScreen=""
+          loading="lazy"
+        ></iframe>
+
+      </div>
+
       {toast && (
         <div className="toast">
-          Submitted Successfully
+          Submitted Successfully 🚀
         </div>
       )}
 

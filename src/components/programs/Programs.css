@@ -1,144 +1,173 @@
 .Programs {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    padding: 0 2rem;
-    margin-top: 4rem;
+  position: relative;
+  padding: 6rem 2rem;
+  overflow: hidden;
+  /* Background gradient matching the image (dark blue/black theme) */
+  background: linear-gradient(135deg, #0B0F1F 0%, #0A0E1A 100%);
 }
 
-/* HEADER */
-
-.programs-header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    gap: 2rem;
-    font-weight: bold;
-    font-size: 3rem;
-    text-transform: uppercase;
-    font-style: italic;
-    text-align: center;
+/* Background gradient overlay from image */
+.programs-bg-gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 30% 20%, rgba(2, 108, 251, 0.08) 0%, transparent 50%),
+              radial-gradient(circle at 70% 80%, rgba(0, 255, 209, 0.05) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
 }
 
-/* GRID */
-
-.program-categories {
-    display: grid;
-
-    /* AUTO FIT FIX */
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-
-    gap: 2rem;
-    margin-top: 2rem;
+.program-bg-blur {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(130px);
+  opacity: 0.12;
+  z-index: 0;
+  pointer-events: none;
 }
 
-/* CARD */
-
-.category {
-    display: flex;
-    flex-direction: column;
-
-    /* ORANGE + DARK THEME */
-    background: linear-gradient(
-        145deg,
-        #1f1f1f,
-        #2c2c2c,
-        #ff7b00
-    );
-
-    padding: 2rem;
-    gap: 1rem;
-
-    color: white;
-
-    border-radius: 20px;
-
-    transition: 0.4s ease;
-
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
-
-    min-height: 320px;
+.blur-left {
+  width: 350px;
+  height: 350px;
+  background: #016CFB;
+  top: 10%;
+  left: -100px;
 }
 
-/* HOVER */
-
-.category:hover {
-    transform: translateY(-10px);
-    cursor: pointer;
-
-    background: linear-gradient(
-        145deg,
-        #ff7b00,
-        #ff9500,
-        #1f1f1f
-    );
+.blur-right {
+  width: 380px;
+  height: 380px;
+  background: #00FFD1;
+  bottom: 10%;
+  right: -100px;
+  opacity: 0.08;
 }
 
-/* ICON */
-
-.category svg {
-    color: #ff9500;
-    width: 45px;
-    height: 45px;
+.programs-title {
+  text-align: center;
+  color: white;
+  position: relative;
+  z-index: 2;
 }
 
-/* TITLE */
-
-.category > :nth-child(2) {
-    font-size: 1.4rem;
-    font-weight: bold;
-    margin-top: 0.5rem;
+.mini-program-title {
+  color: #016CFB;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  display: inline-block;
+  margin-bottom: 1rem;
 }
 
-/* DETAILS */
-
-.category > :nth-child(3) {
-    font-size: 0.95rem;
-    line-height: 28px;
-    color: #e4e4e4;
+.programs-title h2 {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+  font-weight: 800;
 }
 
-/* BUTTON */
-
-.join-now {
-    margin-top: auto;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    background: #ff9500;
-
-    padding: 0.9rem 1rem;
-
-    border-radius: 12px;
-
-    font-weight: bold;
-
-    transition: 0.3s;
+.programs-title h2 .gradient-text {
+  background: linear-gradient(135deg, #FFFFFF 0%, #016CFB 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
-.join-now:hover {
-    background: white;
-    color: black;
+.programs-title p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.05rem;
 }
 
-/* RESPONSIVE */
+.program-grid {
+  margin-top: 4rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+.program-card {
+  padding: 2.5rem;
+  border-radius: 28px;
+  background: rgba(18, 22, 40, 0.65);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(2, 108, 251, 0.15);
+  color: white;
+  transition: 0.4s ease;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.program-card:hover {
+  transform: translateY(-12px);
+  background: rgba(25, 30, 55, 0.75);
+  border-color: rgba(2, 108, 251, 0.4);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+}
+
+.program-icon {
+  width: 75px;
+  height: 75px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 22px;
+  background: linear-gradient(135deg, rgba(2, 108, 251, 0.2) 0%, rgba(0, 255, 209, 0.1) 100%);
+  margin-bottom: 1.5rem;
+  border: 1px solid rgba(2, 108, 251, 0.3);
+}
+
+.program-card svg {
+  color: white;
+  stroke-width: 1.5;
+}
+
+.program-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #FFFFFF 0%, #CCE4FF 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.program-card p {
+  line-height: 30px;
+  color: rgba(255, 255, 255, 0.85);
+}
 
 @media screen and (max-width: 768px) {
+  .Programs {
+    padding: 4rem 1rem;
+  }
 
-    .Programs {
-        padding: 0 1rem;
-    }
+  .programs-title h2 {
+    font-size: 2.2rem;
+  }
 
-    .programs-header {
-        flex-direction: column;
-        gap: 0.5rem;
-        font-size: 2rem;
-    }
+  .program-grid {
+    gap: 1.5rem;
+  }
 
-    .program-categories {
-        grid-template-columns: 1fr;
-    }
+  .program-card {
+    padding: 1.8rem;
+  }
+
+  .program-card h3 {
+    font-size: 1.3rem;
+  }
+
+  .program-card p {
+    line-height: 26px;
+    font-size: 0.95rem;
+  }
+
+  .blur-left,
+  .blur-right {
+    width: 250px;
+    height: 250px;
+  }
 }
